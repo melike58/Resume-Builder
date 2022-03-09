@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Oluşturna</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<h1 th:text="${userId} + '\'s Profile'">Profil Sayfası</h1>
+<div class="container">
+
+    <form action="#" th:action="@{/edit}" th:object="${userProfile}" method="post">
+
+        <div class="form-group">
+            <label>Ad</label>
+            <input class="form-control" th:field="*{firstName}">
+        </div>
+
+        <div class="form-group">
+            <label>Soyad</label>
+            <input class="form-control" th:field="*{lastName}">
+        </div>
+
+        <div class="form-group">
+            <label>Email adresi</label>
+            <input  class="form-control" th:field="*{email}">
+        </div>
+
+        <div class="form-group">
+            <label>Telefon Numarası</label>
+            <input class="form-control" th:field="*{phone}">
+        </div>
+
+        <div class="form-group">
+            <label>Unvan</label>
+            <input class="form-control" th:field="*{designation}">
+        </div>
+
+
+        <h3>İş Tecrübeleriniz</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Şirket</th>
+                <th>Unvan</th>
+                <th>Başlama Tarihi</th>
+                <th>Bitiş Tarihi</th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tr th:each="job, stat: *{jobs}">
+                <td><input class="form-control" th:field="*{jobs[__${stat.index}__].company}"></td>
+                <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
+                <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
+                <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
+                <td><input type="checkbox" class="form-control" th:field="*{jobs[__${stat.index}__].currentJob}"></td>
+                <td><a th:href="@{'./delete?type=job&index=' + ${stat.index}}">Delete</a></td>
+            </tr>
+        </table>
+        <p><a href="./edit?add=job">İş Ekle</a></p>
+
+
+        <h3>Eğitim Bilgileri</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Üniversite</th>
+                <th>Derece</th>
+                <th>Başlama Tarihi</th>
+                <th>Bitiş Tarihi</th>
+
+                <th></th>
+            </tr>
+            </thead>
+            <tr th:each="education, stat: *{educations}">
+                <td><input class="form-control" th:field="*{educations[__${stat.index}__].university}"></td>
+                <td><input class="form-control" th:field="*{educations[__${stat.index}__].qualification}"></td>
+                <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].startDate}"></td>
+                <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].endDate}"></td>
+                <td><a th:href="@{'./delete?type=education&index=' + ${stat.index}}">Sil</a></td>
+            </tr>
+        </table>
+        <p><a href="./edit?add=education">Eğitim Bilgisi Ekle</a></p>
+
+        <h3>Yetenekler</h3>
+        <table>
+            <tr th:each="skill, stat: *{skills}">
+                <td><input class="form-control" th:field="*{skills[__${stat.index}__]}"></td>
+                <td><a th:href="@{'./delete?type=skill&index=' + ${stat.index}}">Sil</a></td>
+            </tr>
+        </table>
+        <p><a href="./edit?add=skill">Yetenek Ekle</a></p>
+
+        <input type="submit" value="Kaydet">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Oluşturulan Cv Listeleri</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Kişiler Tablosu</h2>
+    <table class="table" >
+        <thead>
+        <tr  >
+            <th th:text="${userProfile.id}">ID</th>
+            <th th:text="${userProfile.firstName}">Ad</th>
+            <th th:text="${userProfile.lastName}">Soyad</th>
+            <th th:text="${userProfile.email}">Email</th>
+
+        </tr>
+        </thead >
+        <tbody>
+        <tr>
+            <td></td>
+            <td ></td>
+            <td></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
